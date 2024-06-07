@@ -54,4 +54,32 @@ class ContactoController extends Controller
         }
     }
 
+    public function update(Request $request, $id){
+        try{
+            $contacto = Contactos::find($id);
+            if($contacto){
+                $contacto->update($request->all());
+                return response()->json(['message' => 'Contacto actualizado correctamente'], 200);
+            }else{
+                return response()->json(['error' => 'Contacto no encontrado'], 404);
+            }
+        }catch(\Exception $e){
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function delete($id){
+        try{
+            $contacto = Contactos::find($id);
+            if($contacto){
+                $contacto->delete();
+                return response()->json(['message' => 'Contacto eliminado correctamente'], 200);
+            }else{
+                return response()->json(['error' => 'Contacto no encontrado'], 404);
+            }
+        }catch(\Exception $e){
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

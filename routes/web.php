@@ -22,5 +22,6 @@ Route::prefix('contactos')->group(function(){
     Route::get('obtener-todo', [ContactoController::class, 'getAll']);
     Route::get('obtener/{id}', [ContactoController::class, 'getById']);
     Route::post('crear', [ContactoController::class, 'create']);
-    // Route::put('actualizar/{id}', [ContactoController::class, 'update']);
+    Route::put('actualizar/{id}', [ContactoController::class, 'update']);
+    Route::delete('eliminar/{id}', [ContactoController::class, 'delete']);
 });
