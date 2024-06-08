@@ -7,60 +7,74 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Back_libreta_direcciones
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este es un proyecto desarrollado en Laravel, el framework PHP más popular y robusto para la creación de aplicaciones web. A continuación, se detalla la funcionalidad, la configuración y las instrucciones para ejecutar y utilizar el proyecto.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funcionalidad
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Gestión de Contactos:**
+  - Permite obtener, crear, editar y eliminar contactos.
+  - Cada contacto puede estar asociado con números de teléfono, direcciones y correos electrónicos.
+  
+## Requisitos
 
-## Learning Laravel
+- PHP versión 8.1.
+- Composer.
+- Base de datos MySQL.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalación
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Clonar el Proyecto:**
+   - Clona el proyecto desde GitHub.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+     ```bash
+     git clone https://github.com/Heriberto778/back_libreta_direcciones.git
+     ```
 
-## Laravel Sponsors
+2. **Instalar Dependencias:**
+   - Desde el directorio del proyecto, instala las dependencias utilizando Composer.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+     ```bash
+     composer install
+     ```
 
-### Premium Partners
+3. **Configuración del Archivo .env:**
+   - Crea un archivo `.env` desde el archivo `.env.example` y edítalo para configurar las credenciales de la base de datos y otros detalles.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+4. **Migraciones:**
+   - Ejecuta las migraciones para crear las tablas necesarias en la base de datos.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+     ```bash
+     php artisan migrate
+     ```
 
-## Code of Conduct
+5. **Configuración del Servidor:**
+   - Configura y lanza el servidor local con el siguiente comando:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+     ```bash
+     php artisan serve
+     
+6. **Configuración de la Base de Datos:**
+   - Asegúrate de que la configuración de la base de datos en el archivo `.env` es la correcta.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Uso
 
-## License
+- **API de Creación de Contactos:**
+  - Realiza una solicitud POST a `/api/contactos/crear` con la información del contacto en JSON.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **API de Edición de Contactos:**
+  - Realiza una solicitud PUT a `/api/contactos/actualizar/{id}` con la información actualizada del contacto en JSON.
+
+- **API de Eliminación de Contactos:**
+  - Realiza una solicitud DELETE a `/api/contactos/eliminar/{id}` para eliminar un contacto específico.
+
+- **API de Listado de Contactos:**
+  - Realiza una solicitud GET a `/api/contactos/obtener-todo` para obtener todos los contactos almacenados en la base de datos.
+
+
+## Recursos Adicionales
+
+- [Documentación oficial de Laravel](https://laravel.com/docs)
