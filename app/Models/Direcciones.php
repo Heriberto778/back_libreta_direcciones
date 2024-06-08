@@ -9,7 +9,7 @@ class Direcciones extends Model
 {
     use HasFactory;
     protected $table = 'direcciones';
-    protected $fillable = ['contactos_id', 'calle', 'numero_exterior', 'numero_interior', 'colonia', 'codigo_postal', 'ciudad', 'estado', 'pais'];
+    protected $fillable = ['contactos_id', 'direccion'];
 
     public function contacto()
     {

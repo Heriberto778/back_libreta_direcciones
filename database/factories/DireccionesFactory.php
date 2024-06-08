@@ -18,14 +18,7 @@ class DireccionesFactory extends Factory
     public function definition(): array
     {
         return [
-            'calle' => $this->faker->streetName,
-            'numero_exterior' => $this->faker->buildingNumber,
-            'numero_interior' => $this->faker->buildingNumber,
-            'colonia' => $this->faker->city,
-            'codigo_postal' => $this->faker->postcode,
-            'ciudad' => $this->faker->city,
-            'estado' => $this->faker->state,
-            'pais' => $this->faker->country,
+            'direccion' => $this->faker->address(),
         ];
     }
 }

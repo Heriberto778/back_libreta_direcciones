@@ -14,14 +14,7 @@ return new class extends Migration
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contactos_id')->constrained('contactos')->onDelete('cascade');
-            $table->string('calle');
-            $table->string('numero_exterior');
-            $table->string('numero_interior')->nullable();
-            $table->string('colonia');
-            $table->string('codigo_postal');
-            $table->string('ciudad');
-            $table->string('estado');
-            $table->string('pais');
+            $table->string('direccion');
             $table->timestamps();
         });
     }
