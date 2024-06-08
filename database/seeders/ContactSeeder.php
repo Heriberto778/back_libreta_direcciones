@@ -13,7 +13,7 @@ class ContactSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Contactos::factory()
-            ->count(3)
+            ->count(5000)
             ->withRelated()
             ->create();
     }

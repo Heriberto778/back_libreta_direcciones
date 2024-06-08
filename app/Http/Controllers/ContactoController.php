@@ -97,14 +97,59 @@ class ContactoController extends Controller
 
     public function update(Request $request, $id){
         try{
+            DB::beginTransaction();
+            $request->validate([
+                'telefonos' => 'nullable|array',
+                'telefonos.*' => 'nullable|sometimes|required|numeric',
+                'emails' => 'nullable|array',
+                'emails.*' => 'nullable|sometimes|required|email',
+                'direcciones' => 'nullable|array',
+                'direcciones.*' => 'nullable|sometimes|required'
+            ],
+            [
+                'telefonos.array' => 'El campo telefonos debe ser un arreglo',
+                'telefonos.*.required' => 'El campo telefonos debe ser requerido',
+                'telefonos.*.numeric' => 'El campo telefonos debe ser numérico',
+                'emails.array' => 'El campo emails debe ser un arreglo',
+                'emails.*.required' => 'El campo emails debe ser requerido',
+                'emails.*.email' => 'El campo emails debe ser un correo electrónico',
+                'direcciones.array' => 'El campo direcciones debe ser un arreglo',
+                'direcciones.*.required' => 'El campo direcciones debe ser requerido']);
+
             $contacto = Contactos::find($id);
             if($contacto){
                 $contacto->update($request->all());
+                $contacto->telefonos()->delete();
+                $contacto->emails()->delete();
+                $contacto->direcciones()->delete();
+                if (!empty($request->telefonos)) {
+                    foreach($request->telefonos as $telefono){
+                        $contacto->telefonos()->create([
+                            'telefono' => $telefono
+                        ]);
+                    }
+                }
+                if (!empty($request->emails)) {
+                    foreach($request->emails as $email){
+                        $contacto->emails()->create([
+                            'email' => $email
+                        ]);
+                    }
+                }
+                if (!empty($request->direcciones)) {
+                    foreach($request->direcciones as $direccion){
+                        $contacto->direcciones()->create([
+                            'direccion' => $direccion
+                        ]);
+                    }
+                }
+                DB::commit();
                 return response()->json(['message' => 'Contacto actualizado correctamente'], 200);
             }else{
                 return response()->json(['error' => 'Contacto no encontrado'], 404);
             }
         }catch(\Exception $e){
+            DB::rollBack();
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
